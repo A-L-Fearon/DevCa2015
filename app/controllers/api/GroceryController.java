@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import models.Product;
 import models.Store;
+import play.Logger;
 import play.data.DynamicForm;
 import play.libs.Json;
 import play.mvc.Controller;
@@ -24,9 +25,22 @@ public class GroceryController extends Controller {
     //@BodyParser.Of(BodyParser.Json.class)
     public static Result myList() {
         Map<String, String[]> body = request().body().asFormUrlEncoded();
-        //JsonNode json = request().body().asJson();
-        System.out.print("\n" + request().body().asRaw());
-        return ok("Got body: " + request().body().asRaw());
+        JsonNode array = request().body().asJson();
+
+        if(array.isArray()){
+            for (JsonNode record : array) {
+                Logger.debug(record.toString());
+                Iterator<String> fields = record.fieldNames();
+                while(fields.hasNext()){
+                    String field = fields.next();
+                    Logger.debug(field);
+                    Logger.debug(record.get(field).asText());
+                }
+            }
+        }
+
+
+        return ok("Got body: ");
 
         /*
         int i, x, lowid = 0, prods, len;
