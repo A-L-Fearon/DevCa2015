@@ -9,7 +9,10 @@ GET        /                        controllers.Application.index()
 GET        /assets/*file            controllers.Assets.at(path="/public", file)
 
 GET        /api/stores             controllers.api.StoresController.index()
-GET        /api/stores/{id}        controllers.api.StoresController.getStore(id : Long)
+GET        /api/stores/name/{name} controllers.api.StoresController.showByName(name : String)
+
+GET        /api/stores/{id}        controllers.api.StoresController.show(id : Long)
+
 
 POST       /api/list               controllers.api.GroceryController.myList(groceries: String ?= "")
 

@@ -26,9 +26,14 @@ public class StoresController extends Controller {
         return ok(result);
     }
 
-    public static Result getStore(Long id) {
+    public static Result show(Long id) {
 
         return null;
+    }
+
+    public static Result showByName(String name) {
+
+
     }
 
 }
