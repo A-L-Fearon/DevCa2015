@@ -56,7 +56,12 @@ public class GroceryController extends Controller {
             }
         }
 
-        return ok("Got body: ");
+        
+
+        ObjectNode result = Json.newObject();
+        result.put("data", products.toString());
+
+        return ok(result);
 
         /*
         int i, x, lowid = 0, prods, len;
