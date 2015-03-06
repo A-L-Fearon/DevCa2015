@@ -18,6 +18,7 @@ public class StoresController extends Controller {
 
     @BodyParser.Of(BodyParser.Json.class)
     public static Result index() {
+
         ObjectNode result = Json.newObject();
 
         result.put("status", "OK");
@@ -29,6 +30,7 @@ public class StoresController extends Controller {
 
     @BodyParser.Of(BodyParser.Json.class)
     public static Result show(Long id) {
+
         ObjectNode result = Json.newObject();
 
         result.put("status", "OK");
@@ -40,6 +42,7 @@ public class StoresController extends Controller {
 
     @BodyParser.Of(BodyParser.Json.class)
     public static Result showByName(String name) {
+
         ObjectNode result = Json.newObject();
 
         result.put("status", "OK");

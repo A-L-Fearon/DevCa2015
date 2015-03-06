@@ -16,9 +16,5 @@ public class ProductSize extends Model {
 
     public String description;
 
-    public static ProductSize create(ProductSize size, String desc){
-        size.description = desc;
-
-    }
 
 }

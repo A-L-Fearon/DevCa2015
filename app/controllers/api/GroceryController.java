@@ -10,6 +10,7 @@ import views.html.*;
  */
 public class GroceryController extends Controller {
 
+    @BodyParser.Of(BodyParser.Json.class)
     public static Result myList(String groceries) {
         String[] groceryArray = groceries.split(",");
 
