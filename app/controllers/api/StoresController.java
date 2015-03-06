@@ -23,17 +23,30 @@ public class StoresController extends Controller {
         result.put("status", "OK");
         result.put("message", "Yoooooo");
         result.put("error", "");
+
         return ok(result);
     }
 
+    @BodyParser.Of(BodyParser.Json.class)
     public static Result show(Long id) {
+        ObjectNode result = Json.newObject();
 
-        return null;
+        result.put("status", "OK");
+        result.put("message", "Yooo");
+        result.put("error", "");
+
+        return ok(result);
     }
 
+    @BodyParser.Of(BodyParser.Json.class)
     public static Result showByName(String name) {
+        ObjectNode result = Json.newObject();
 
+        result.put("status", "OK");
+        result.put("message", "Yooo");
+        result.put("error", "");
 
+        return ok(result);
     }
 
 }
