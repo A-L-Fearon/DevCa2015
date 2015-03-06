@@ -3,7 +3,7 @@
 @main("Welcome to Play") {
 
 <nav>
-    <div>Fi Wi Budget @session.get("test") @session.get("latitude")</div>
+    <div>Fi Wi Budget @session.get("test")</div>
     <ul>
         <li ng-click="switchF()">Switch App</li>
         <li>Consumer History</li>
@@ -73,7 +73,7 @@
                     <div>{{store.type}}</div>
                     <div>{{store.number}}</div>
                     <div>{{store.address}}</div>
-                    @session.get("name");
+                    <div>@session.get("name")</div>
                 </li>
             </ul>
             <div id="budgetList" ng-show="switch">
