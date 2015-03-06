@@ -13,4 +13,7 @@ public class Stores extends Model {
     public String parish;
     public String coordinates;
 
+
+    public static Finder<String,Stores> find = new Finder<>(String.class, Stores.class);
+
 }
