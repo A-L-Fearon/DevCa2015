@@ -32,7 +32,7 @@ public class StoresController extends Controller {
     }
 
     public static Result showByName(String name) {
-
+        return ok();
 
     }
 
