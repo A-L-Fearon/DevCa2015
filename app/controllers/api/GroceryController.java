@@ -12,10 +12,7 @@ import play.mvc.*;
 import play.data.Form;
 
 import views.html.*;
-
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Shane on 3/5/2015.
@@ -39,6 +36,25 @@ public class GroceryController extends Controller {
             }
         }
 
+        /**
+         * Bubble Sort
+         */
+
+        List<Product> products = Product.find.findList();
+        int max = products.size();
+
+        for (int x = 0; x < max; x++)
+        {
+            for (int y = x; y < max; y++)
+            {
+                if (products.get(x).price > products.get(y).price)
+                {
+                    Product temp = products.get(x);
+                    products.set(x, products.get(y));
+                    products.set(y, temp);
+                }
+            }
+        }
 
         return ok("Got body: ");
 
