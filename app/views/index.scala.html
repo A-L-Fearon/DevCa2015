@@ -2,6 +2,84 @@
 
 @main("Welcome to Play") {
 
-    @play20.welcome(message, style = "Java")
+<nav>
+    <div>Fi Wi Budget</div>
+    <ul>
+        <li ng-click="switchF()">Switch App</li>
+        <li>Consumer History</li>
+        <li>Contact</li>
+        <li> </li>
+        <li> </li>
+    </ul>
+</nav>
+<header>
+    <div id="header-holder">
+        <div id="map-canvas"></div>
+        <div id="specials"></div>
+    </div>
+</header>
+<main>
+    <section id="info">
+        <div id="info-holder"><h1 ng-hide="switch">Groceries</h1>
+
+            <h1 ng-show="switch">Budget</h1>
+
+            <div id="input-holder"><input ng-model="newItem" type="text" list="foods" placeholder="Add item"
+                                          ng-hide="switch"/><input ng-model="budget" type="number"
+                                                                   placeholder="budget" ng-show="switch"/>
+
+                <div ng-click="addItem(newItem)" ng-hide="switch"><span class="fa fa-plus"></span></div>
+                <datalist id="foods">
+                    <option ng-repeat="food in foods" value="{{food.name}}"></option>
+                </datalist>
+            </div>
+            <div id="list" ng-hide="switch">
+                <div id="list-header"><span>Grocery List</span>
+
+                    <div ng-click="sendList()"><span class="fa fa-send"></span></div>
+                </div>
+                <ul>
+                    <li ng-repeat="item in items">
+                        <div>{{item.name}}</div>
+                        <input type="text" placeholder="qty" ng-model="item.qty"/></li>
+                </ul>
+            </div>
+            <div id="list" ng-show="switch">
+                <div id="list-header"><span>Budget Calulator</span>
+
+                    <div ng-click="calculateBudget(budget)"><span class="fa fa-send"></span></div>
+                </div>
+                <div id="input-holder"><input ng-model="newDislike" type="text" list="foods"
+                                              placeholder="Add dislike"/>
+
+                    <div ng-click="addDislike(newDislike)"><span class="fa fa-plus"></span></div>
+                    <datalist id="foods">
+                        <option ng-repeat="food in foods" value="{{food.name}}"></option>
+                    </datalist>
+                </div>
+                <ul>
+                    <li ng-repeat="dislike in dislikes">
+                        <div>{{dislike.name}}</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="results-holder">
+        <div id="results">
+            <ul ng-hide="switch">
+                <li ng-repeat="store in stores">
+                    <div>{{store.name}}</div>
+                    <div>{{store.type}}</div>
+                    <div>{{store.number}}</div>
+                    <div>{{store.address}}</div>
+                </li>
+            </ul>
+            <div id="budgetList" ng-show="switch">
+                <li ng-repeat="res in results"><h1>{{resKeys[$index+1]}} | {{res}}</h1></li>
+            </div>
+        </div>
+    </section>
+</main>
 
 }
