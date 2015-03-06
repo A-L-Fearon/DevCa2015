@@ -25,9 +25,8 @@ public class GroceryController extends Controller {
     public static Result myList() {
         Map<String, String[]> body = request().body().asFormUrlEncoded();
         //JsonNode json = request().body().asJson();
-
-        System.out.print(request().body().asRaw());
-        return ok("Got body: ");
+        System.out.print("\n" + request().body().asRaw());
+        return ok("Got body: " + request().body().asRaw());
 
         /*
         int i, x, lowid = 0, prods, len;
