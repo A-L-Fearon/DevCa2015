@@ -3,7 +3,15 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET        /                        controllers.Application.index()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET        /assets/*file            controllers.Assets.at(path="/public", file)
+
+GET        /api/stores             controllers.api.StoresController.index()
+GET        /api/stores/{id}        controllers.api.StoresController.getStore(id : Long)
+
+POST       /api/list               controllers.api.GroceryController.myList(groceries: String ?= "")
+
+GET        /api/items               controllers.api.ProductsController.index()
+
