@@ -44,18 +44,26 @@ public class GroceryController extends Controller {
         ObjectNode result = Json.newObject();
 
         ObjectNode nested = Json.newObject();
-
+        List<Store> stores = Store.find.findList();
         List<Product> categories = Product.find.findList();
-
+        session().clear();
+        Logger.debug("method", categories.size());
         for (int x = 0; x < categories.size(); x++)
         {
-//            ObjectNode data = Json.newObject();
+//          ObjectNode data = Json.newObject();
             Map<String, String> node = new  HashMap<>();
             ArrayList<HashMap<String, String>> data = new ArrayList<>();
 
             node.put("name", String.valueOf(categories.get(x).name));
             data.add((HashMap<String,String>) node);
+            //Logger.debug(data.get(x).get("name"));
+            Logger.debug(String.valueOf(x));
+            Logger.debug(categories.get(x).name);
+            session("name", categories.get(x).name);
+            session("latitude", stores.get(x).latitude.toString());
+            session("longitude", stores.get(x).longitude.toString());
 
+            session("test", "test");
             node.put("price", String.valueOf(categories.get(x).price));
             data.add((HashMap<String,String>) node);
 

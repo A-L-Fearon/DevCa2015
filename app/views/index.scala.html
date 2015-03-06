@@ -3,7 +3,7 @@
 @main("Welcome to Play") {
 
 <nav>
-    <div>Fi Wi Budget</div>
+    <div>Fi Wi Budget @session.get("test") @session.get("latitude")</div>
     <ul>
         <li ng-click="switchF()">Switch App</li>
         <li>Consumer History</li>
@@ -34,7 +34,7 @@
                 </datalist>
             </div>
             <div id="list" ng-hide="switch">
-                <div id="list-header"><span>Grocery List</span>
+                <div id="list-header"><span>Grocery List</span>@session.get("name");
 
                     <div ng-click="sendList()"><span class="fa fa-send"></span></div>
                 </div>
@@ -73,6 +73,7 @@
                     <div>{{store.type}}</div>
                     <div>{{store.number}}</div>
                     <div>{{store.address}}</div>
+                    @session.get("name");
                 </li>
             </ul>
             <div id="budgetList" ng-show="switch">
