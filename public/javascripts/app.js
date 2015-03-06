@@ -13,24 +13,12 @@
         return $scope["switch"] = $scope.$parent["switch"];
       };
       $scope.items = [];
-      $scope.stores = [
-        {
-          name: 'Store Name',
-          type: "Wholesale",
-          number: "465-1234",
-          address: "4 FkThisShit Dr. Kingston 69"
-        }, {
-          name: 'Store Name',
-          type: "Wholesale",
-          number: "465-1234",
-          address: "4 FkThisShit Dr. Kingston 69"
-        }, {
-          name: 'Store Name',
-          type: "Wholesale",
-          number: "465-1234",
-          address: "4 FkThisShit Dr. Kingston 69"
-        }
-      ];
+      $scope.stores = [];
+
+      $scope.pan = function(LanLat){
+        map.panTo(LanLat);
+      }
+
       $scope.init = function() {
         var cityCircle, map, mapOptions, marker, myLatlng, populationOptions;
         mapOptions = {
@@ -41,23 +29,22 @@
           zoom: 8
         };
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-        myLatlng = new google.maps.LatLng(-34.397, 150.644);
+        myLatlng = new google.maps.LatLng(18.008180,-76.748485);
         marker = new google.maps.Marker({
           position: myLatlng,
           map: map,
-          title: "Hello World!"
         });
-        populationOptions = {
-          strokeColor: '#FF0000',
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: '#FF0000',
-          fillOpacity: 0.35,
-          map: map,
-          center: myLatlng,
-          radius: 10000
-        };
-        cityCircle = new google.maps.Circle(populationOptions);
+        // populationOptions = {
+        //   strokeColor: '#FF0000',
+        //   strokeOpacity: 0.8,
+        //   strokeWeight: 2,
+        //   fillColor: '#FF0000',
+        //   fillOpacity: 0.35,
+        //   map: map,
+        //   center: myLatlng,
+        //   radius: 10000
+        // };
+        // cityCircle = new google.maps.Circle(populationOptions);
         return $scope.foods = {
           "Red peas": {
             "name": "Red peas",
