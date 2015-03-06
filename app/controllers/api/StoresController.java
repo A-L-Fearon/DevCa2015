@@ -22,7 +22,7 @@ public class StoresController extends Controller {
 
         result.put("status", "OK");
         result.put("message", "Yoooooo");
-
+        result.put("error", "");
         return ok(result);
     }
 
