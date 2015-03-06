@@ -14,7 +14,7 @@ GET        /api/stores/name/{name} controllers.api.StoresController.showByName(n
 GET        /api/stores/{id}        controllers.api.StoresController.show(id : Long)
 
 
-POST       /api/list               controllers.api.GroceryController.myList(groceries: String ?= "")
+POST       /api/list               controllers.api.GroceryController.myList()
 
 GET        /api/items               controllers.api.ProductsController.index()
 
