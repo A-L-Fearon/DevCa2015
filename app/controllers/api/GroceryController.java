@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class GroceryController extends Controller {
 
+    @BodyParser.Of(BodyParser.Json.class)
     public static Result myList(String groceries) {
         int i, low;
         String[] groceryArray = groceries.split(",");
