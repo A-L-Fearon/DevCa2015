@@ -1,5 +1,3 @@
-# --- Created by Ebean DDL
-# To stop Ebean DDL generation, remove this comment and start using Evolutions
 
 # --- !Ups
 
@@ -26,9 +24,14 @@ create table product_size (
 create table store (
   id                        bigint not null,
   name                      varchar(255),
+  address                   varchar(255),
+  address2                  varchar(255),
   parish                    varchar(255),
   latitude                  double,
   longitude                 double,
+  type                      varchar(255),
+  town                      varchar(255),
+  telenum                   varchar(255),
   constraint pk_store primary key (id))
 ;
 
