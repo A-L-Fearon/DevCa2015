@@ -21,45 +21,112 @@ public class GroceryController extends Controller {
 
     //@BodyParser.Of(BodyParser.Json.class)
     public static Result myList() {
-        Map<String, String[]> body = request().body().asFormUrlEncoded();
-        JsonNode array = request().body().asJson();
-
-        if(array.isArray()){
-            for (JsonNode record : array) {
-                Logger.debug(record.toString());
-                Iterator<String> fields = record.fieldNames();
-                while(fields.hasNext()){
-                    String field = fields.next();
-                    Logger.debug(field);
-                    Logger.debug(record.get(field).asText());
-                }
-            }
-        }
-
-        /**
-         * Bubble Sort
-         */
-
-        List<Product> products = Product.find.findList();
-        int max = products.size();
-
-        for (int x = 0; x < max; x++)
-        {
-            for (int y = x; y < max; y++)
-            {
-                if (products.get(x).price > products.get(y).price)
-                {
-                    Product temp = products.get(x);
-                    products.set(x, products.get(y));
-                    products.set(y, temp);
-                }
-            }
-        }
-
-        
+//        Map<String, String[]> body = request().body().asFormUrlEncoded();
+//        JsonNode array = request().body().asJson();
+//        String[] names = new String[5];
+//        int[] quantity = new int[5];
+//
+//        if (array.isArray()){
+//            int max = array.size();
+//
+//            names = new String[max - 1];
+//            quantity = new int[max -1];
+//
+//            for (int i = 0; i < max; i++) {
+//                names[i] = array.get(i).findPath("name").asText();
+//                quantity[i] = array.get(i).findPath("quantity").asInt();
+//
+//                Logger.debug(names[i]);
+//                Logger.debug(String.valueOf(quantity[i]));
+//            }
+//        }
 
         ObjectNode result = Json.newObject();
-        result.put("data", products.toString());
+
+        ObjectNode nested = Json.newObject();
+
+        List<Product> categories = Product.find.findList();
+
+        for (int x = 0; x < categories.size(); x++)
+        {
+//            ObjectNode data = Json.newObject();
+            Map<String, String> node = new  HashMap<>();
+            ArrayList<HashMap<String, String>> data = new ArrayList<>();
+
+            node.put("name", String.valueOf(categories.get(x).name));
+            data.add((HashMap<String,String>) node);
+
+            node.put("price", String.valueOf(categories.get(x).price));
+            data.add((HashMap<String,String>) node);
+
+            node.put("store_id", String.valueOf(categories.get(x).store.id));
+            data.add((HashMap<String,String>) node);
+
+            node.put("latitude", String.valueOf(categories.get(x).store.latitude));
+            data.add((HashMap<String,String>) node);
+
+            node.put("longitude", String.valueOf(categories.get(x).store.longitude));
+            data.add((HashMap<String,String>) node);
+
+            node.put("address", String.valueOf(categories.get(x).store.address));
+            data.add((HashMap<String,String>) node);
+
+            node.put("address2", String.valueOf(categories.get(x).store.address2));
+            data.add((HashMap<String,String>) node);
+
+            node.put("parish", String.valueOf(categories.get(x).store.parish));
+            data.add((HashMap<String,String>) node);
+
+            node.put("telephone", String.valueOf(categories.get(x).store.telenum));
+            data.add((HashMap<String,String>) node);
+
+            node.put("telephone", String.valueOf(categories.get(x).store.type));
+            data.add((HashMap<String,String>) node);
+
+            nested.put("product", Json.toJson(data));
+        }
+
+        result.put("data", nested);
+//
+//        for (String name: names) {
+//
+//        }
+
+
+//        if(array.isArray()){
+//            for (JsonNode record : array) {
+//                Logger.debug(record.toString());
+//                Iterator<String> fields = record.fieldNames();
+//
+//
+
+//                while(fields.hasNext()){
+//                    String field = fields.next();
+//                    Logger.debug(field);
+//                    Logger.debug(record.get(field).asText());
+//                }
+//            }
+//        }
+//
+//        /**
+//         * Bubble Sort
+//         */
+//
+//        List<Product> products = Product.find.findList();
+//        int max = products.size();
+//
+//        for (int x = 0; x < max; x++)
+//        {
+//            for (int y = x; y < max; y++)
+//            {
+//                if (products.get(x).price > products.get(y).price)
+//                {
+//                    Product temp = products.get(x);
+//                    products.set(x, products.get(y));
+//                    products.set(y, temp);
+//                }
+//            }
+//        }
 
         return ok(result);
 
