@@ -15,9 +15,14 @@ public class Store extends Model {
     @Id
     public Long id;
     public String name;
+    public String address;
+    public String address2;
     public String parish;
     public Double latitude;
     public Double longitude;
+    public String type;
+    public String town;
+    public String telenum;
 
     @OneToMany
     public Product product;
