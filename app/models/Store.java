@@ -5,6 +5,7 @@ import play.db.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class Store extends Model {
     //@OneToMany
     //public Product product;
     @OneToMany(mappedBy = "store")
-    public List<Product> product;
+    public List<Product> product = new ArrayList<Product>();
 
     public static Finder<Long, Store> find = new Finder<>(Long.class, Store.class);
 

@@ -4,13 +4,13 @@
 # --- !Ups
 
 create table brand (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   name                      varchar(255),
   constraint pk_brand primary key (id))
 ;
 
 create table product (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   name                      varchar(255),
   price                     integer,
   store_id                  bigint,
@@ -18,13 +18,13 @@ create table product (
 ;
 
 create table product_size (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   description               varchar(255),
   constraint pk_product_size primary key (id))
 ;
 
 create table store (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   name                      varchar(255),
   address                   varchar(255),
   address2                  varchar(255),
@@ -37,14 +37,6 @@ create table store (
   constraint pk_store primary key (id))
 ;
 
-create sequence brand_seq;
-
-create sequence product_seq;
-
-create sequence product_size_seq;
-
-create sequence store_seq;
-
 alter table product add constraint fk_product_store_1 foreign key (store_id) references store (id) on delete restrict on update restrict;
 create index ix_product_store_1 on product (store_id);
 
@@ -52,23 +44,15 @@ create index ix_product_store_1 on product (store_id);
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists brand;
+drop table brand;
 
-drop table if exists product;
+drop table product;
 
-drop table if exists product_size;
+drop table product_size;
 
-drop table if exists store;
+drop table store;
 
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists brand_seq;
-
-drop sequence if exists product_seq;
-
-drop sequence if exists product_size_seq;
-
-drop sequence if exists store_seq;
+SET FOREIGN_KEY_CHECKS=1;
 
