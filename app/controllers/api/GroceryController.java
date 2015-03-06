@@ -30,9 +30,11 @@ public class GroceryController extends Controller {
         if(array.isArray()){
             for (JsonNode record : array) {
                 Logger.debug(record.toString());
-                while(record.fieldNames().hasNext()){
-                    Logger.debug(record.fieldNames().next());
-                    Logger.debug(record.get(record.fieldNames().next()).asText());
+                Iterator<String> fields = record.fieldNames();
+                while(fields.hasNext()){
+                    String field = fields.next();
+                    Logger.debug(field);
+                    Logger.debug(record.get(field).asText());
                 }
             }
         }
